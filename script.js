@@ -1,8 +1,14 @@
-let circle1 = document.querySelector(".circle1");
-let circle2 = document.querySelector(".circle2");
+let sections = document.querySelectorAll("section");
 
-window.addEventListener("scroll", () => {
-  let scrollValue = window.scrollY;
-  circle1.style.clipPath = `circle(${150 + scrollValue * 0.75}px at 0 0)`;
-  circle2.style.clipPath = `circle(${150 + scrollValue * 0.75}px at 100% 100%)`;
-});
+window.onscroll = () => {
+  sections.forEach((sec) => {
+    let scrollDistance = window.scrollY;
+    let secDistance = sec.offsetTop;
+
+    if (scrollDistance >= secDistance - 150) {
+      sec.classList.add("show-animate");
+    } else {
+      sec.classList.remove("show-animate");
+    }
+  });
+};
