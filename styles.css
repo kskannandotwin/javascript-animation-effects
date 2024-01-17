@@ -1,85 +1,104 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
-body {
-  overflow: hidden;
-}
-
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.scene {
+  position: relative;
   height: 100vh;
-  background: #0d172e;
+  overflow: hidden;
+  background: linear-gradient(#a6d8ff, #fff, #fff);
 }
 
-section:before {
+.sun {
+  position: absolute;
+  top: 100px;
+  left: 55%;
+  width: 100px;
+  height: 100px;
+  background: #ffffff;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 50px #ffffff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.scene.night {
+  background: #222833;
+}
+
+.scene.night .sun {
+  left: 45%;
+  box-shadow: 0 0 0 #fff;
+}
+
+.scene.night .sun::before {
   content: "";
   position: absolute;
-  width: 30vw;
-  height: 30vw;
-  border: 5vw solid #ff9100;
+  top: -20px;
+  left: 20px;
+  width: 100%;
+  height: 100%;
+  background: #222833;
   border-radius: 50%;
-  box-shadow: 0 0 0 1vw #0d172e, 0 0 0 1.3vw #fff;
 }
 
-h2 {
+.bg {
   position: absolute;
-  font-size: 8vw;
-  color: #fff;
-  font-weight: 400;
-  text-align: center;
-  line-height: 2em;
-  z-index: 5;
-  transform: skewY(-7deg);
-  text-shadow: 1px 1px 0 #ccc, 2px 2px 0 #ccc, 3px 3px 0 #ccc, 4px 4px 0 #ccc,
-    5px 5px 0 #ccc, 10px 10px 0px rgba(0, 0, 0, 0.2);
-  animation: floating 5s ease-in-out infinite;
+  bottom: 0;
+  width: 100%;
+  height: 280px;
+  background: url(bg1.png);
+  animation: animateBg 25s linear infinite;
+  background-size: 1500px;
+  background-repeat: repeat-x;
 }
 
-h2 span {
-  font-weight: 700;
-  font-size: 3em;
-  text-shadow: 1px 1px 0 #ccc, 2px 2px 0 #ccc, 3px 3px 0 #ccc, 4px 4px 0 #ccc,
-    5px 5px 0 #ccc, 6px 6px 0 #ccc, 7px 7px 0 #ccc, 8px 8px 0 #ccc,
-    9px 9px 0 #ccc, 10px 10px 0 #ccc, 20px 20px 0px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes floating {
-  0%,
-  100% {
-    transform: skewY(-7deg) translateY(-20px);
-  }
-
-  50% {
-    transform: skewY(-7deg) translateY(20px);
-  }
-}
-
-section i {
-  position: absolute;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff;
-  animation: stars linear infinite;
-}
-
-@keyframes stars {
+@keyframes animateBg {
   0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
+    background-position-x: 0px;
   }
   100% {
-    opacity: 0;
+    background-position-x: -1500px;
+  }
+}
+
+.car1 {
+  position: absolute;
+  left: -200px;
+  bottom: 20px;
+  max-width: 200px;
+  z-index: 1;
+  animation: car1 18s linear infinite;
+}
+
+.car2 {
+  position: absolute;
+  right: -200px;
+  bottom: 50px;
+  max-width: 200px;
+  /* z-index: 9; */
+  animation: car2 12s linear infinite;
+}
+
+@keyframes car1 {
+  0% {
+    transform: translateX(0px);
+  }
+  90%,
+  100% {
+    transform: translateX(calc(100vw + 200px));
+  }
+}
+
+@keyframes car2 {
+  0% {
+    transform: translateX(0px) rotateY(180deg);
+  }
+  90%,
+  100% {
+    transform: translateX(calc(-100vw - 200px)) rotateY(180deg);
   }
 }
