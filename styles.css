@@ -1,104 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-.scene {
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #8460ed, #ff1252);
+}
+
+.container {
+  width: 270px;
+  height: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(#a6d8ff, #fff, #fff);
 }
 
-.sun {
-  position: absolute;
-  top: 100px;
-  left: 55%;
-  width: 100px;
-  height: 100px;
-  background: #ffffff;
+.toggle {
+  width: 70px;
+  height: 70px;
+  background: #fff;
   border-radius: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 50px #ffffff;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
   cursor: pointer;
-  transition: 0.2s;
+  z-index: 20;
+  transition: 0.3s;
 }
 
-.scene.night {
-  background: #222833;
+.container.active .toggle {
+  transform: rotate(45deg);
 }
 
-.scene.night .sun {
-  left: 45%;
-  box-shadow: 0 0 0 #fff;
-}
-
-.scene.night .sun::before {
-  content: "";
+.container .menu {
   position: absolute;
-  top: -20px;
-  left: 20px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: #222833;
-  border-radius: 50%;
 }
 
-.bg {
+.menu li {
   position: absolute;
-  bottom: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 280px;
-  background: url(bg1.png);
-  animation: animateBg 25s linear infinite;
-  background-size: 1500px;
-  background-repeat: repeat-x;
+  height: 100%;
+  pointer-events: none;
+  transform: rotate(calc(360deg / 6 * var(--i)));
 }
 
-@keyframes animateBg {
-  0% {
-    background-position-x: 0px;
-  }
-  100% {
-    background-position-x: -1500px;
-  }
-}
-
-.car1 {
+.menu li a {
+  width: 55px;
+  height: 55px;
+  color: #222;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  left: -200px;
-  bottom: 20px;
-  max-width: 200px;
-  z-index: 1;
-  animation: car1 18s linear infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: visible;
+  transition: 0.3s;
 }
 
-.car2 {
-  position: absolute;
-  right: -200px;
-  bottom: 50px;
-  max-width: 200px;
-  /* z-index: 9; */
-  animation: car2 12s linear infinite;
-}
-
-@keyframes car1 {
-  0% {
-    transform: translateX(0px);
-  }
-  90%,
-  100% {
-    transform: translateX(calc(100vw + 200px));
-  }
-}
-
-@keyframes car2 {
-  0% {
-    transform: translateX(0px) rotateY(180deg);
-  }
-  90%,
-  100% {
-    transform: translateX(calc(-100vw - 200px)) rotateY(180deg);
-  }
+.container.active .menu li a {
+  top: 0;
+  transform: translate(-50%, -50%) rotate(calc(-360deg / 6 * var(--i)));
 }
