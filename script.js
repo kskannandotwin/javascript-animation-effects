@@ -1,14 +1,5 @@
-let sections = document.querySelectorAll("section");
+let pattern = document.querySelector(".bg");
 
-window.onscroll = () => {
-  sections.forEach((sec) => {
-    let scrollDistance = window.scrollY;
-    let secDistance = sec.offsetTop;
-
-    if (scrollDistance >= secDistance - 150) {
-      sec.classList.add("show-animate");
-    } else {
-      sec.classList.remove("show-animate");
-    }
-  });
-};
+window.addEventListener("scroll", () => {
+  pattern.style.backgroundPosition = window.scrollY + "px";
+});
