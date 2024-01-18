@@ -1,5 +1,6 @@
-let toggle = document.querySelector(".toggle");
+let skewed = document.querySelector(".skewed");
 
-toggle.addEventListener("click", () => {
-  toggle.classList.toggle("active");
+window.addEventListener("scroll", () => {
+  let value = -10 + window.scrollY / 60;
+  skewed.style.transform = `skewY(${value}deg)`;
 });
