@@ -1,6 +1,8 @@
-let skewed = document.querySelector(".skewed");
+let video = document.querySelector(".video");
+let thumbs = document.querySelectorAll("ul li");
 
-window.addEventListener("scroll", () => {
-  let value = -10 + window.scrollY / 60;
-  skewed.style.transform = `skewY(${value}deg)`;
+thumbs.forEach((thumb, i) => {
+  thumb.addEventListener("click", () => {
+    video.src = `video${i + 1}.mp4`;
+  });
 });
